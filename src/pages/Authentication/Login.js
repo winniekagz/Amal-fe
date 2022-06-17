@@ -18,7 +18,7 @@ import FacebookLogin from "react-facebook-login/dist/facebook-login-render-props
 // actions
 import { loginUser, socialLogin, resetLoginFlag } from "../../store/actions";
 
-import logoLight from "../../assets/images/logo-light.png";
+import logoLight from "../../assets/images/logo.png";
 //Import config
 import { facebook, google } from "../../config";
 //import images
@@ -101,7 +101,7 @@ const Login = (props) => {
         }, 3000);
     }, [dispatch, error]);
 
-    document.title = "Basic SignIn | Velzon - React Admin & Dashboard Template";
+   
     return (
         <React.Fragment>
             <ParticlesAuth>
@@ -115,7 +115,7 @@ const Login = (props) => {
                                             <img src={logoLight} alt="" height="20" />
                                         </Link>
                                     </div>
-                                    <p className="mt-3 fs-15 fw-medium">Premium Admin & Dashboard Template</p>
+                                    <p className="mt-3 fs-15 fw-medium text-capitalize">Amal investment</p>
                                 </div>
                             </Col>
                         </Row>
@@ -126,7 +126,7 @@ const Login = (props) => {
                                     <CardBody className="p-4">
                                         <div className="text-center mt-2">
                                             <h5 className="text-primary">Welcome Back !</h5>
-                                            <p className="text-muted">Sign in to continue to Velzon.</p>
+                                            <p className="text-muted">Sign in to continue to Amal.</p>
                                         </div>
                                         {error && error ? (<Alert color="danger"> {error} </Alert>) : null}
                                         <div className="p-2 mt-4">
@@ -159,7 +159,7 @@ const Login = (props) => {
 
                                                 <div className="mb-3">
                                                     <div className="float-end">
-                                                        <Link to="/forgot-password" className="text-muted">Forgot password?</Link>
+                                                        <Link to="/forgot-password" className="text-muted text-capitalize">Forgot password?</Link>
                                                     </div>
                                                     <Label className="form-label" htmlFor="password-input">Password</Label>
                                                     <div className="position-relative auth-pass-inputgroup mb-3">

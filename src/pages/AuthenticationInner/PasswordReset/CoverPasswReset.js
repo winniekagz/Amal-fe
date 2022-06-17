@@ -1,11 +1,43 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { Button, Card, Col, Container, Row } from 'reactstrap';
+import { Alert, Button, Card, Col, Container, FormFeedback, Row, Form} from 'reactstrap';
 
 import AuthSlider from '../authCarousel';
+//redux
+import { useSelector, useDispatch } from "react-redux";
 
-const CoverPasswReset = () => {
-    document.title="Reset Password | Velzon - React Admin & Dashboard Template";
+import { withRouter, Link } from "react-router-dom";
+// Formik Validation
+import * as Yup from "yup";
+import {  useFormik } from "formik";
+// action
+import { userForgetPassword } from "../../../store/auth/forgetpwd/actions"
+
+// import images
+// import profile from "../../assets/images/bg.png";
+import logoLight from "../../../assets/images/logo.png";
+import ParticlesAuth from "../../AuthenticationInner/ParticlesAuth";
+
+const CoverPasswReset = (props) => {
+    const dispatch = useDispatch();
+    const validation = useFormik({
+        // enableReinitialize : use this flag when initial values needs to be changed
+        enableReinitialize: true,
+    
+        initialValues: {
+          email: '',
+        },
+        validationSchema: Yup.object({
+          email: Yup.string().required("Please Enter Your Email"),
+        }),
+        onSubmit: (values) => {
+          dispatch(userForgetPassword(values, props.history));
+        }
+      });
+
+  const { forgetError, forgetSuccessMsg } = useSelector(state => ({
+    forgetError: state.ForgetPassword.forgetError,
+    forgetSuccessMsg: state.ForgetPassword.forgetSuccessMsg,
+  }));
 
     return (
         <React.Fragment>
@@ -38,16 +70,46 @@ const CoverPasswReset = () => {
                                                     Enter your email and instructions will be sent to you!
                                                 </div>
                                                 <div className="p-2">
-                                                    <form>
+                                                {forgetError && forgetError ? (
+                      <Alert color="danger" style={{ marginTop: "13px" }}>
+                        {forgetError}
+                      </Alert>
+                    ) : null}
+                    {forgetSuccessMsg ? (
+                      <Alert color="success" style={{ marginTop: "13px" }}>
+                        {forgetSuccessMsg}
+                      </Alert>
+                    ) : null}
+                                                     <Form
+                      onSubmit={(e) => {
+                        e.preventDefault();
+                        validation.handleSubmit();
+                        return false;
+                      }}
+                    >
                                                         <div className="mb-4">
                                                             <label className="form-label">Email</label>
-                                                            <input type="email" className="form-control" id="email" placeholder="Enter email address" required/>
+                                                            <input type="email"
+                                                             className="form-control"
+                                                              id="email"
+                                                               placeholder="Enter email address"
+                                                                required
+                                                                onChange={validation.handleChange}
+                                                                onBlur={validation.handleBlur}
+                                                                value={validation.values.email || ""}
+                                                                invalid={
+                                                                  validation.touched.email && validation.errors.email ? true : false
+                                                                }
+                                                                />
+                                                                  {validation.touched.email && validation.errors.email ? (
+                          <FormFeedback type="invalid"><div>{validation.errors.email}</div></FormFeedback>
+                        ) : null}
                                                         </div>
 
                                                         <div className="text-center mt-4">
                                                             <Button color="success" className="w-100" type="submit">Send Reset Link</Button>
                                                         </div>
-                                                    </form>
+                                                    </Form>
                                                 </div>
 
                                                 <div className="mt-5 text-center">
@@ -66,7 +128,7 @@ const CoverPasswReset = () => {
                         <Row>
                             <Col lg={12}>
                                 <div className="text-center">
-                                    <p className="mb-0">&copy; {new Date().getFullYear()} Velzon. Crafted with <i className="mdi mdi-heart text-danger"></i> by Themesbrand</p>
+                                    <p className="mb-0">&copy; {new Date().getFullYear()} Amal. created <i className="mdi mdi-heart text-danger"></i> by Oaknet</p>
                                 </div>
                             </Col>
                         </Row>

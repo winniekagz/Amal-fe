@@ -7,7 +7,7 @@ import LeafletMaps from "../pages/Maps/LeafletMaps/LeafletMaps";
 //AuthenticationInner pages
 
 import CoverSignIn from '../pages/AuthenticationInner/Login/CoverSignIn';
-
+import PasswordReset from "../pages/Authentication/PasswordReset";
 import CoverSignUp from "../pages/AuthenticationInner/Register/CoverSignUp";
 
 //pages
@@ -73,10 +73,10 @@ const authProtectedRoutes = [
 
 const publicRoutes = [
   // Authentication Page
-  { path: "/forgot-password", component: ForgetPasswordPage },  
+  
   { path: "/login", component: CoverSignIn },  
   { path: "/register", component: CoverSignUp }, 
-  { path: "/password-reset", component: CoverPasswReset },  
+  { path: "/forgot-password", component: CoverPasswReset },  
   { path: "/lock-screen", component: CoverLockScreen }, 
   { path: "/logout", component: CoverLogout },
   { path: "/success-msg", component: CoverSuccessMsg },  
@@ -84,6 +84,7 @@ const publicRoutes = [
   { path: "/auth-404", component: Cover404 },
   { path: "/auth-500", component: Error500 },
   { path: "/pages-maintenance", component: Maintenance },
+  {path:"/passwordReset/:email/:token",component:PasswordReset},
  
 
 

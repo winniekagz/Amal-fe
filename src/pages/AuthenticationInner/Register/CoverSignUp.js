@@ -37,7 +37,7 @@ const CoverSignUp = () => {
         }
         console.log("phone", phone)
     }
-    document.title = "Cover SignUp | Velzon - React Admin & Dashboard Template";
+    
     return (
         <React.Fragment>
             <div className="auth-page-wrapper auth-bg-cover py-5 d-flex justify-content-center align-items-center min-vh-100">
@@ -102,7 +102,7 @@ const CoverSignUp = () => {
                                                                 <Row>
                                                                     <Col md={6}>
                                                                         <div className="mb-3">
-                                                                            <Label className="form-label">First Name</Label>
+                                                                            <Label className="form-label text-capitalize">First Name</Label>
                                                                             <Input type="text"
                                                                                 className="form-control"
                                                                                 placeholder="Enter your firstname"
@@ -117,7 +117,7 @@ const CoverSignUp = () => {
                                                                     </Col>
                                                                     <Col md={6}>
                                                                         <div className="mb-3">
-                                                                            <Label htmlFor="middleNameinput" className="form-label">middle Name</Label>
+                                                                            <Label htmlFor="middleNameinput " className="form-label text-capitalize">middle Name</Label>
                                                                             <Input type="text"
                                                                                 className="form-control"
                                                                                 placeholder="Enter your middlename"
@@ -132,7 +132,7 @@ const CoverSignUp = () => {
                                                                     </Col>
                                                                     <Col md={6}>
                                                                         <div className="mb-3">
-                                                                            <Label htmlFor="lastNameinput" className="form-label">last Name</Label>
+                                                                            <Label htmlFor="lastNameinput" className="form-label text-capitalize">last Name</Label>
                                                                             <Input type="text"
                                                                                 className="form-control"
                                                                                 placeholder="Enter last name"
@@ -169,7 +169,7 @@ const CoverSignUp = () => {
                                                                     </Col>
                                                                     <Col md={12}>
                                                                         <div className="mb-3">
-                                                                            <Label htmlFor="emailidInput" className="form-label">Email Address</Label>
+                                                                            <Label htmlFor="emailidInput" className="form-label text-capitalize">Email Address</Label>
                                                                             <Input type="email"
                                                                                 className="form-control"
                                                                                 placeholder="example@gamil.com"
@@ -184,7 +184,7 @@ const CoverSignUp = () => {
                                                                     </Col>
                                                                     <Col md={6}>
                                                                         <div className="mb-3">
-                                                                            <Label htmlFor="password1ControlTextarea" className="form-label">password</Label>
+                                                                            <Label htmlFor="password1ControlTextarea" className="form-label text-capitalize">password</Label>
                                                                             <Input type="password"
                                                                                 className="form-control"
                                                                                 placeholder="password 1"
@@ -199,7 +199,7 @@ const CoverSignUp = () => {
                                                                     </Col>
                                                                     <Col md={6}>
                                                                         <div className="mb-3">
-                                                                            <Label htmlFor="password1ControlTextarea" className="form-label">password</Label>
+                                                                            <Label htmlFor="password1ControlTextarea" className="form-label text-capitalize">password</Label>
                                                                             <Input type="password"
                                                                                 className="form-control"
                                                                                 placeholder="password 1"
@@ -213,7 +213,7 @@ const CoverSignUp = () => {
                                                                         </div>
                                                                     </Col>
                                                                     <div className="mt-4">
-                                                                        <button className="btn btn-success w-100" type="submit">Sign Up</button>
+                                                                        <button className="btn btn-success w-100 text-capitalize" type="submit">Sign Up</button>
                                                                     </div>
                                                                 </Row>
                                                             </Form>
@@ -222,7 +222,7 @@ const CoverSignUp = () => {
                                                 </div>
 
                                                 <div className="mt-5 text-center">
-                                                    <p className="mb-0">Already have an account ? <Link to="/auth-signin-cover" className="fw-semibold text-primary text-decoration-underline"> Signin</Link> </p>
+                                                    <p className="mb-0 ">Already have an account ? <Link to="/login" className="fw-semibold text-primary text-decoration-underline text-uppercase">login</Link> </p>
                                                 </div>
                                             </div>
                                         </Col>
@@ -240,7 +240,7 @@ const CoverSignUp = () => {
                         <div className="row">
                             <div className="col-lg-12">
                                 <div className="text-center">
-                                    <p className="mb-0">&copy; {new Date().getFullYear()} Velzon. Crafted with <i className="mdi mdi-heart text-danger"></i> by Themesbrand</p>
+                                    <p className="mb-0">&copy; {new Date().getFullYear()} Amal. Crafted with <i className="mdi mdi-heart text-danger"></i> by Themesbrand</p>
                                 </div>
                             </div>
                         </div>

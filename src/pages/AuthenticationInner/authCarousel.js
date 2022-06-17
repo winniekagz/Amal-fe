@@ -5,7 +5,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Link } from "react-router-dom";
 
 // Import Images
-import logoLight from "../../assets/images/logo-light.png";
+import logoLight from "../../assets/images/logo.png";
 
 const AuthSlider = () => {
     return (
@@ -16,7 +16,7 @@ const AuthSlider = () => {
                     <div className="bg-overlay"></div>
                     <div className="position-relative h-100 d-flex flex-column">
                         <div className="mb-4">
-                            <Link to="/dashboard" className="d-block">
+                            <Link to="/" className="d-block">
                                 <img src={logoLight} alt="" height="18" />
                             </Link>
                         </div>

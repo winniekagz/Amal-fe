@@ -6,36 +6,20 @@ import ParticlesAuth from "../ParticlesAuth";
 //import images 
 import logoLight from "../../../assets/images/logo-light.png";
 import { requests } from '../../../services/Api';
+import {registerUser} from "../../../store/auth/register/actions"
+//redux
+import { useSelector, useDispatch } from "react-redux";
 
 
 const BasicSignUp = () => {
-    const [phone, setPhone] = useState("")
-    const [loading, setLoading] = useState(false)
-    const [serverError, setServerError] = useState("")
-    const [successResponse,setSuccessResponse]=useState("")
-    const history= useHistory()
-    const RegisterUser = async(values) => {
-        try {
-            setLoading(true);
-            const response = await requests.post(`auth/register`, values)
-            setLoading(false);
-            setSuccessResponse("you have been registered successfully.please verify your email")
-
-            setTimeout(() => {
-              setSuccessResponse("")
-            }, 5000);
-            history.push("/")
-        } catch (error) {
-            setLoading(false);
-            console.log('error',error)
-            setServerError(error.response.data.message)
-            setTimeout(()=>{
-              setServerError("")
-            },5000)
-        }
-        console.log("phone",phone)
-      }
-    document.title = "Basic SignUp | Velzon - React Admin & Dashboard Template";
+    const dispatch = useDispatch();
+    const { userdata } = useSelector(state => ({
+      userdata: state.Account.userdata,
+    }));
+    useEffect(() => {
+        dispatch(registerUser());
+      }, [dispatch]);
+      console.log(userdata);
     return (
         <React.Fragment>
             <ParticlesAuth>

@@ -1,10 +1,54 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useHistory } from 'react-router-dom';
 import { Card, Col, Container, Input, Label, Row ,Button} from 'reactstrap';
 import AuthSlider from '../authCarousel';
+import * as Yup from "yup"
+import { requests } from '../../../services/Api';
+import { Form, Formik } from 'formik';
 
 const CoverSignIn = () => {
     document.title="Cover SignIn  | Velzon - React Admin & Dashboard Template";
+    const [loading, setLoading] = useState(false)
+    const [serverError, setServerError] = useState("")
+    const [successResponse,setSuccessResponse]=useState("")
+    const history= useHistory()
+
+    const LoginUser= async(values)=>{
+    try {
+        setLoading(true)
+         const response = await requests.post(`auth/login`,values)
+         setLoading(false)
+         const {data} = response
+        console.log('loginresponse',data)
+
+      
+
+     
+       console.log("userdata",data)
+        const user = {
+            name: data.user.name,
+            email: data.user.email,
+          }
+
+         
+
+         
+         setTimeout(() => {
+             setSuccessResponse("")
+           }, 5000)   
+     
+       
+    }
+      catch (error) {
+        setLoading(false)
+        console.log('error',error)
+        setServerError(error.response.data.message)
+        setTimeout(()=>{
+          setServerError("")
+        },5000)
+      }
+    }
+
 
     return (
         <React.Fragment>
@@ -23,51 +67,69 @@ const CoverSignIn = () => {
                                             <div className="p-lg-5 p-4">
                                                 <div>
                                                     <h5 className="text-primary">Welcome Back !</h5>
-                                                    <p className="text-muted">Sign in to continue to Velzon.</p>
+                                                    <p className="text-muted">Sign in to continue to Amal.</p>
                                                 </div>
 
                                                 <div className="mt-4">
-                                                    <form action="/">
+                                                <Formik
+                                    initialValues={{
+                                        "email":"",
+                                        "password":""
+                                    }}
+                                    validationSchema={Yup.object({
+                                        email: Yup.string().email('Invalid email address').required('Required'),
+                                      password: Yup.string().required('Required'),
+                                       
+                                    })}
+                                    onSubmit={(values) => {
+                                       LoginUser(values)
+                                      }}>
+                                    {({values, isSubmitting, errors, handleSubmit, handleChange,isValid,
+          dirty}) => (
+
+                                    <Form >
 
                                                         <div className="mb-3">
-                                                            <Label htmlFor="username" className="form-label">Username</Label>
-                                                            <Input type="text" className="form-control" id="username" placeholder="Enter username" required/>
+                                                            <Label htmlFor="username" className="form-label text-capitalize">email</Label>
+                                                            <Input type="text" 
+                                                            className="form-control"
+                                                             id="username"
+                                                              placeholder="Enter username"
+                                                               required
+                                                               name="email"
+                                                               onChange={handleChange}
+                                                               value={values.email}/>
                                                         </div>
 
                                                         <div className="mb-3">
                                                             <div className="float-end">
-                                                                <Link to="/auth-pass-reset-cover" className="text-muted">Forgot password?</Link>
+                                                                <Link to="//forgot-password" className="text-muted text-capitalize">Forgot password?</Link>
                                                             </div>
-                                                            <Label className="form-label" htmlFor="password-input">Password</Label>
+                                                            <Label className="form-label text-capitalize" htmlFor="password-input">Password</Label>
                                                             <div className="position-relative auth-pass-inputgroup mb-3">
-                                                                <Input type="password" className="form-control pe-5" placeholder="Enter password" id="password-input" required/>
+                                                                <Input type="password"
+                                                                 className="form-control pe-5" 
+                                                                 placeholder="Enter password"
+                                                                  id="password-input"
+                                                                   required
+                                                                name="password"
+                                                                onChange={handleChange}
+                                                                value={values.password}/>
                                                                 <button className="btn btn-link position-absolute end-0 top-0 text-decoration-none text-muted" type="button" id="password-addon"><i className="ri-eye-fill align-middle"></i></button>
                                                             </div>
                                                         </div>
 
-                                                        <div className="form-check">
-                                                            <Input className="form-check-input" type="checkbox" value="" id="auth-remember-check"/>
-                                                            <Label className="form-check-label" htmlFor="auth-remember-check">Remember me</Label>
-                                                        </div>
+                                                       
 
                                                         <div className="mt-4">
-                                                            <Button color="success" className="w-100" type="submit">Sign In</Button>
+                                                            <Button  type="submit" color="success" className="w-100" >Sign In</Button>
                                                         </div>
 
-                                                        <div className="mt-4 text-center">
-                                                            <div className="signin-other-title">
-                                                                <h5 className="fs-14 mb-4 title">Sign In with</h5>
-                                                            </div>
+                           
 
-                                                            <div>
-                                                                <Button color="primary" className="btn-icon me-1"><i className="ri-facebook-fill fs-16"></i></Button>
-                                                                <Button color="danger" className="btn-icon me-1"><i className="ri-google-fill fs-16"></i></Button>
-                                                                <Button color="dark" className="btn-icon me-1"><i className="ri-github-fill fs-16"></i></Button>
-                                                                <Button color="info" className="btn-icon"><i className="ri-twitter-fill fs-16"></i></Button>
-                                                            </div>
-                                                        </div>
-
-                                                    </form>
+                                                    </Form>
+          )}
+          </Formik>
                                                 </div>
 
                                                 <div className="mt-5 text-center">

@@ -16,13 +16,13 @@ export const isUserAuthenticated = () => {
 };
 
 // Register Method
-export const postFakeRegister = data => api.create(url.POST_FAKE_REGISTER, data);
+export const postRegister = data => api.create(url.POST_REGISTER, data);
 
 // Login Method
-export const postFakeLogin = data => api.create(url.POST_FAKE_LOGIN, data);
+export const postLogin = data => api.create(url.POST_LOGIN, data);
 
 // postForgetPwd
-export const postFakeForgetPwd = data => api.create(url.POST_FAKE_PASSWORD_FORGET, data);
+export const postForgetPwd = data => api.create(url.POST_PASSWORD_FORGET, data);
 
 // Edit profile
 export const postJwtProfile = data => api.create(url.POST_EDIT_JWT_PROFILE, data);

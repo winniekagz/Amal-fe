@@ -40,7 +40,11 @@ const BasicSignIn = () => {
 
                                                 <div className="mb-3">
                                                     <Label htmlFor="username" className="form-label">Username</Label>
-                                                    <Input type="text" className="form-control" id="username" placeholder="Enter username" required/>
+                                                    <Input type="text" 
+                                                    className="form-control"
+                                                     id="username"
+                                                      placeholder="Enter username" 
+                                                      required/>
                                                 </div>
 
                                                 <div className="mb-3">
